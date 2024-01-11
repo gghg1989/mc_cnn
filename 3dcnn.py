@@ -2,12 +2,9 @@ import tensorflow as tf
 from tensorflow.keras import layers, models
 import numpy as np
 
-# Function to generate synthetic 3D data
-def generate_synthetic_data(num_samples, input_shape):
-    data = np.random.random((num_samples, *input_shape))
-    labels = np.random.randint(2, size=num_samples)  # Binary labels (0 or 1)
-
-    return data, labels
+def load_data(filename):
+    loaded_data = np.load(filename)
+    return loaded_data['data'], loaded_data['labels']
 
 # Function to create a 3D CNN model
 def create_3d_cnn(input_shape):
@@ -46,14 +43,9 @@ num_train_samples = 1000
 num_test_samples = 200
 input_shape = (16, 16, 384, 1)
 
-train_data, train_labels = generate_synthetic_data(num_train_samples, input_shape)
-test_data, test_labels = generate_synthetic_data(num_test_samples, input_shape)
+train_data, train_labels = load_data('data/training_data.npy')
+test_data, test_labels = load_data('data/test_data.npy')
 
-# Print shapes of generated data
-print("Train Data Shape:", train_data.shape)
-print("Train Labels Shape:", train_labels.shape)
-print("Test Data Shape:", test_data.shape)
-print("Test Labels Shape:", test_labels.shape)
 
 # Create and train the 3D CNN model
 model = create_3d_cnn(input_shape)
