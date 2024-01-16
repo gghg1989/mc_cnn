@@ -43,8 +43,8 @@ num_train_samples = 1000
 num_test_samples = 200
 input_shape = (16, 16, 384, 1)
 
-train_data, train_labels = load_data('data/training_data.npy')
-test_data, test_labels = load_data('data/test_data.npy')
+train_data, train_labels = load_data('data/training_data.npz')
+test_data, test_labels = load_data('data/test_data.npz')
 
 
 # Create and train the 3D CNN model
